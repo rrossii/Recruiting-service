@@ -21,4 +21,14 @@ public without sharing class RTA_CandidateController {
             throw new AuraHandledException('Error in getCandidateById(): ' + e.getMessage());
         }
     }
+
+    @AuraEnabled(cacheable=true)
+    public static List<Job_Application__c> getRelatedJobApplicationsInfo(Id candidateId) {
+        try {
+            return [SELECT Id, Name, Current_Status__c, Application_Date__c FROM Job_Application__c
+                    WHERE Candidate__c = :candidateId];
+        } catch (Exception e) {
+            throw new AuraHandledException('Error in getRelatedJobApplicationsInfo(): ' + e.getMessage());
+        }
+    }
 }
