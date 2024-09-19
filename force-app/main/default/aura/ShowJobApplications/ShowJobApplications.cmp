@@ -1,0 +1,16 @@
+<aura:component controller="RTA_CandidateController" implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global">
+    <aura:attribute name="candidateId" type="Id" />
+    <aura:attribute name="jobApplications" type="List"/>
+    <aura:attribute name="columns" type="List"/>
+
+    <!-- handlers-->
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+
+    <div style="height: 300px" >
+        <lightning:datatable class="slds-table_bordered slds-table_col-bordered"
+                keyField="id" 
+                data="{! v.jobApplications }"
+                columns="{! v.columns }"
+                hideCheckboxColumn="true"/>
+    </div>
+</aura:component>
